@@ -1,0 +1,38 @@
+{
+  "name": "AbbrScan — Medical Abbreviation Decoder",
+  "version": "1.5.4",
+  "description": "Automatically finds and decodes abbreviations in research papers. Supports ePDF viewers and local PDF files.",
+  "manifest_version": 3,
+  "permissions": ["storage", "tabs", "declarativeNetRequest"],
+  "host_permissions": ["<all_urls>", "file:///*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["pdfjs/web/viewer.html", "pdfjs/web/*", "pdfjs/build/*"],
+      "matches": ["<all_urls>", "file:///*"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
